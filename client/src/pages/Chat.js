@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://mini-facebook-42lp.onrender.com');
 
 
 export default function Chat() {
@@ -22,7 +22,7 @@ export default function Chat() {
   const loadMessages = async () => {
 
     const res = await axios.get(
-      `http://localhost:5000/api/messages/${me._id}/${id}`
+      `https://mini-facebook-42lp.onrender.com/api/messages/${me._id}/${id}`
     );
 
     setMessages(res.data);
@@ -43,7 +43,7 @@ export default function Chat() {
 
     // save db
     await axios.post(
-      'http://localhost:5000/api/messages',
+      'https://mini-facebook-42lp.onrender.com/api/messages',
       msg
     );
 

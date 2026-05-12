@@ -8,28 +8,41 @@ const app = express();
 
 // 🔥 BODY LIMIT
 app.use(express.json({ limit: '50mb' }));
+
 app.use(express.urlencoded({
   limit: '50mb',
   extended: true
 }));
 
 
-app.use(cors());
+// 🔥 CORS
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://mini-facebook-neon.vercel.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 
 // 🔥 TEST ROUTE
 app.get('/', (req, res) => {
+
   res.send('Backend Running 🚀');
+
 });
 
 
 // 🔥 MONGODB ATLAS CONNECT
 mongoose.connect(process.env.MONGO_URI)
+
 .then(() => {
 
   console.log('MongoDB Connected');
 
 })
+
 .catch((err) => {
 
   console.log('MongoDB Error:', err);
@@ -39,19 +52,30 @@ mongoose.connect(process.env.MONGO_URI)
 
 // 🔥 ROUTES
 app.use('/api/auth', require('./routes/auth'));
+
 app.use('/api/posts', require('./routes/posts'));
+
 app.use('/api/friends', require('./routes/friends'));
+
 app.use('/api/messages', require('./routes/messages'));
 
 
 // 🔥 SOCKET SERVER
 const server = require('http').createServer(app);
 
+
 const io = require('socket.io')(server, {
 
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+
+    origin: [
+      'http://localhost:5173',
+      'https://mini-facebook-neon.vercel.app'
+    ],
+
+    methods: ['GET', 'POST'],
+
+    credentials: true
   }
 
 });

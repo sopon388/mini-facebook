@@ -1,4 +1,4 @@
-import './Home.css';
+
 
 import Navbar from '../components/Navbar';
 import PostBox from '../components/PostBox';
@@ -24,7 +24,7 @@ export default function Home() {
   // 🔥 LOAD POSTS
   const load = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/posts');
+      const res = await axios.get('https://mini-facebook-42lp.onrender.com/api/posts');
       setPosts(res.data || []);
     } catch (err) {
       console.log(err);
@@ -39,7 +39,7 @@ export default function Home() {
     const latestProfile = localStorage.getItem('profile_' + user._id);
 
     try {
-      await axios.post('http://localhost:5000/api/posts', {
+      await axios.post('https://mini-facebook-42lp.onrender.com/api/posts', {
         userId: user._id,
         userName: name || "User",
         text,
@@ -57,7 +57,7 @@ export default function Home() {
   // 👍 LIKE
   const likePost = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/posts/like/${id}`);
+      await axios.post(`https://mini-facebook-42lp.onrender.com/api/posts/like/${id}`);
       load();
     } catch (err) {
       console.log(err);
@@ -69,7 +69,7 @@ export default function Home() {
     if (!commentText[id]) return;
 
     try {
-      await axios.post(`http://localhost:5000/api/posts/comment/${id}`, {
+      await axios.post(`https://mini-facebook-42lp.onrender.com/api/posts/comment/${id}`, {
         text: commentText[id]
       });
 
@@ -83,7 +83,7 @@ export default function Home() {
   // 🔥 DELETE POST
   const deletePost = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      await axios.delete(`https://mini-facebook-42lp.onrender.com/api/posts/${id}`);
       load();
     } catch (err) {
       console.log(err);

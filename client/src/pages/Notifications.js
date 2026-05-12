@@ -6,7 +6,7 @@ export default function Notifications() {
   const me = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/friends/notifications/${me._id}`)
+    axios.get(`https://mini-facebook-42lp.onrender.com/api/friends/notifications/${me._id}`)
       .then(res => setData(res.data));
   }, []);
 

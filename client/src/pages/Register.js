@@ -1,4 +1,3 @@
-import './Register.css';
 
 import { useState } from 'react';
 import axios from 'axios';
@@ -10,7 +9,7 @@ export default function Register() {
 
   const register = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/register', data);
+      await axios.post('https://mini-facebook-42lp.onrender.com/api/auth/register', data);
       nav('/');
     } catch (err) {
       alert("Registration failed ❌");

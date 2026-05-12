@@ -18,7 +18,7 @@ export default function Friends() {
   const loadUsers = async () => {
 
     const res = await axios.get(
-      'http://localhost:5000/api/auth/users'
+      'https://mini-facebook-42lp.onrender.com/api/auth/users'
     );
 
     setUsers(
@@ -31,7 +31,7 @@ export default function Friends() {
   const loadRequests = async () => {
 
     const res = await axios.get(
-      `http://localhost:5000/api/friends/notifications/${me._id}`
+      `https://mini-facebook-42lp.onrender.com/api/friends/notifications/${me._id}`
     );
 
     setRequests(res.data);
@@ -42,7 +42,7 @@ export default function Friends() {
   const loadFriends = async () => {
 
     const res = await axios.get(
-      `http://localhost:5000/api/friends/list/${me._id}`
+      `https://mini-facebook-42lp.onrender.com/api/friends/list/${me._id}`
     );
 
     setFriends(res.data);
@@ -55,7 +55,7 @@ export default function Friends() {
     try {
 
       const res = await axios.post(
-        'http://localhost:5000/api/friends/send',
+        'https://mini-facebook-42lp.onrender.com/api/friends/send',
         {
           from: me._id,
           to: id
@@ -75,7 +75,7 @@ export default function Friends() {
   const acceptRequest = async (reqId) => {
 
     await axios.post(
-      'http://localhost:5000/api/friends/accept',
+      'https://mini-facebook-42lp.onrender.com/api/friends/accept',
       {
         id: reqId
       }
@@ -90,7 +90,7 @@ export default function Friends() {
   const removeFriend = async (id) => {
 
     await axios.post(
-      'http://localhost:5000/api/friends/remove',
+      'https://mini-facebook-42lp.onrender.com/api/friends/remove',
       {
         from: me._id,
         to: id

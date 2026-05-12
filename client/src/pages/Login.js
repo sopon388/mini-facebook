@@ -1,4 +1,4 @@
-import './Login.css'; // 🔥 add this
+
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ export default function Login() {
   const nav = useNavigate();
 
   const login = async () => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', data);
+    const res = await axios.post('https://mini-facebook-42lp.onrender.com/api/auth/login', data);
 
     if (res.data.error) {
       alert(res.data.error);
