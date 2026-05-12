@@ -1,22 +1,51 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
-// 🔥 ONLY THIS PART UPDATED
+
+// 🔥 BODY LIMIT
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
+
 
 app.use(cors());
 
-mongoose.connect('mongodb://127.0.0.1:27017/minifb');
 
+// 🔥 TEST ROUTE
+app.get('/', (req, res) => {
+  res.send('Backend Running 🚀');
+});
+
+
+// 🔥 MONGODB ATLAS CONNECT
+mongoose.connect(process.env.MONGO_URI, {
+
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+
+})
+.then(() => {
+
+  console.log('MongoDB Connected');
+
+})
+.catch((err) => {
+
+  console.log('MongoDB Error:', err);
+
+});
+
+
+// 🔥 ROUTES
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/friends', require('./routes/friends'));
-
-// 🔥 NEW MESSAGE ROUTE
 app.use('/api/messages', require('./routes/messages'));
 
 
@@ -24,9 +53,12 @@ app.use('/api/messages', require('./routes/messages'));
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server, {
+
   cors: {
-    origin: "*"
+    origin: "*",
+    methods: ["GET", "POST"]
   }
+
 });
 
 
@@ -46,6 +78,7 @@ io.on('connection', (socket) => {
     users[userId] = socket.id;
 
     console.log(users);
+
   });
 
 
@@ -54,11 +87,17 @@ io.on('connection', (socket) => {
 
     const receiverSocket = users[data.receiver];
 
+
     // 🔥 SEND TO RECEIVER
     if (receiverSocket) {
 
-      io.to(receiverSocket).emit('receiveMessage', data);
+      io.to(receiverSocket).emit(
+        'receiveMessage',
+        data
+      );
+
     }
+
   });
 
 
@@ -66,12 +105,19 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
 
     console.log('User disconnected');
+
   });
 
 });
 
 
-// 🔥 IMPORTANT
-server.listen(5000, () => {
-  console.log('Server running');
+// 🔥 PORT
+const PORT = process.env.PORT || 5000;
+
+
+// 🔥 SERVER START
+server.listen(PORT, () => {
+
+  console.log(`Server running on port ${PORT}`);
+
 });
