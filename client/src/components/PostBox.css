@@ -1,0 +1,43 @@
+/* post box container */
+.postbox {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* textarea */
+.postbox textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #f0f2f5;
+  margin-bottom: 10px;
+}
+
+/* file input */
+.postbox input[type="file"] {
+  margin-bottom: 10px;
+}
+
+/* post button */
+.postbox button {
+  width: 100%;
+  padding: 8px;
+  background: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* hover */
+.postbox button:hover {
+  background: #166fe5;
+}
