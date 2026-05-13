@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+const API = process.env.REACT_APP_API_URL;
 
 import io from 'socket.io-client';
 
@@ -22,7 +23,7 @@ export default function Chat() {
   const loadMessages = async () => {
 
     const res = await axios.get(
-      `https://https://mini-facebook-1.onrender.com/api/messages/${me._id}/${id}`
+      `https://mini-facebook-1.onrender.com/api/messages/${me._id}/${id}`
     );
 
     setMessages(res.data);

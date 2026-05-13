@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import PostBox from '../components/PostBox';
 import Story from '../components/Story';
 import axios from 'axios';
+const API = process.env.REACT_APP_API_URL;
 import { useState, useEffect } from 'react';
 
 export default function Home() {
