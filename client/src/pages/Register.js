@@ -9,7 +9,7 @@ export default function Register() {
 
   const register = async () => {
     try {
-      await axios.post('https://mini-facebook-42lp.onrender.com/api/auth/register', data);
+      await axios.post('https://mini-facebook-1.onrender.com/api/auth/register', data);
       nav('/');
     } catch (err) {
       alert("Registration failed ❌");

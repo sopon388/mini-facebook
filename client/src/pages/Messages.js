@@ -9,7 +9,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 
 
-const socket = io('https://mini-facebook-42lp.onrender.com');
+const socket = io('https://mini-facebook-1.onrender.com');
 
 
 export default function Messages() {
@@ -33,7 +33,7 @@ export default function Messages() {
     try {
 
       const res = await axios.get(
-        `https://mini-facebook-42lp.onrender.com/api/friends/list/${me._id}`
+        `https://mini-facebook-1.onrender.com/api/friends/list/${me._id}`
       );
 
       setFriends(res.data);
@@ -53,7 +53,7 @@ export default function Messages() {
     try {
 
       const res = await axios.get(
-        `https://mini-facebook-42lp.onrender.com/api/messages/${me._id}/${id}`
+        `https://mini-facebook-1.onrender.com/api/messages/${me._id}/${id}`
       );
 
       setMessages(res.data);
@@ -80,7 +80,7 @@ export default function Messages() {
 
       // save database
       await axios.post(
-        'https://mini-facebook-42lp.onrender.com/api/messages',
+        'https://mini-facebook-1.onrender.com/api/messages',
         msg
       );
 

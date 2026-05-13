@@ -8,7 +8,7 @@ export default function Login() {
   const nav = useNavigate();
 
   const login = async () => {
-    const res = await axios.post('https://mini-facebook-42lp.onrender.com/api/auth/login', data);
+    const res = await axios.post('https://mini-facebook-1.onrender.com/api/auth/login', data);
 
     if (res.data.error) {
       alert(res.data.error);
